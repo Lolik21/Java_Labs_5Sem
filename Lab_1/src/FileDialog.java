@@ -6,7 +6,7 @@ public class FileDialog {
 	{
 		JFileChooser fileChooser = new JFileChooser();
 		int ret = fileChooser.showOpenDialog(null);
-		if (ret == fileChooser.APPROVE_OPTION)
+		if (ret == JFileChooser.APPROVE_OPTION)
 		{
 			File file = fileChooser.getSelectedFile();
 			return file.getAbsolutePath();

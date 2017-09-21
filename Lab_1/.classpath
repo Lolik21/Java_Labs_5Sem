@@ -2,5 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="Email/dsn.jar"/>
+	<classpathentry kind="lib" path="Email/gimap.jar"/>
+	<classpathentry kind="lib" path="Email/imap.jar"/>
+	<classpathentry kind="lib" path="Email/mailapi.jar"/>
+	<classpathentry kind="lib" path="Email/pop3.jar"/>
+	<classpathentry kind="lib" path="Email/smtp.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

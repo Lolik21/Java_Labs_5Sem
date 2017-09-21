@@ -2,17 +2,63 @@ import java.util.ArrayList;
 
 public class BookLibrary {
 	private ArrayList<Book> Books;
+	private String AdminEmail;
+	private ArrayList<User> Users;
+	
+	public void setUsers(ArrayList<User> Users)
+	{
+		this.Users = Users;
+	}
+	
+	public ArrayList<User> getUsers()
+	{
+		return Users;
+	}
+	
+	public void setAdminEmail(String Email)
+	{
+		AdminEmail = Email;
+	}
 
+	public String getAdminEmail()
+	{
+		return AdminEmail;
+	}
+	
 	public void addBook(Book NewBook)
 	{
 		Books.add(NewBook);
 	}
 
-	private boolean DeleteBook(Book DelBook)
+	public boolean DeleteBook(Book DelBook)
 	{
 		return Books.remove(DelBook);
 	}
 
+	public Book GetByName(String Name)
+	{
+		for (Book book : Books) {
+			if (book.getBookName() == Name)
+			{
+				return book;
+			}
+		}
+		return null;
+	}
+	
+	public Book GetByIndex(int index)
+	{
+		if (index>0 && index<Books.size())
+		{
+			return Books.get(index);
+		}		
+		return null;
+	}
+	
+	public int Size() {
+		return Books.size();
+	}
+	
 	private void CreateBookList()
 	{
 		if (Books == null)
@@ -21,6 +67,7 @@ public class BookLibrary {
 		}
 	}
 
+	
 	public void LoadBooks(String FileName)
 	{
 		LibraryLoader LLoader = new LibraryLoader();

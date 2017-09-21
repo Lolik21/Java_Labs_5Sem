@@ -5,9 +5,16 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class UserLoader {
+	private final int USER_NAME = 0;
+	private final int USER_PASSWD = 1;
+	private final int USER_EMAIL = 2;	
+	private final int USER_MARK = 3;
+	private final String ADMIN_MARK = "Admin";
+	
 	public ArrayList<User> GetUsers(String FileName)
 	{
 		BufferedReader br;
+		if (FileName == null) return null;
 		try
 		{
 			ArrayList<User> LoadedUsers = new ArrayList<User>();
@@ -29,10 +36,19 @@ public class UserLoader {
 	
 	private User GetUser(String Line)
 	{
-		String[] SplitedLine = Line.split("|");
-		String Name = SplitedLine[0];
-		String Passwd = SplitedLine[1];
-		User NewUser = new User(Name,Passwd);	
+		String[] SplitedLine = Line.split(":");
+		String Name = SplitedLine[USER_NAME];
+		String Passwd = SplitedLine[USER_PASSWD];
+		String Email = SplitedLine[USER_EMAIL];
+		User NewUser;
+		if (SplitedLine.length > USER_MARK)			
+		{
+			if (SplitedLine[USER_MARK] == ADMIN_MARK)
+			{
+				NewUser = new Admin(Name, Passwd, Email);
+			}
+		}
+		NewUser = new User(Name,Passwd,Email);	
 		return NewUser;
 	}
 

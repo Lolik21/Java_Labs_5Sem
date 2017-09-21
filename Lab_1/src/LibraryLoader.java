@@ -30,7 +30,7 @@ public class LibraryLoader {
 	
 	private Book GetBook(String Line)
 	{	
-		String[] SplitedLine = Line.split("|");
+		String[] SplitedLine = Line.split(":");
 		Book NewBook = new Book();
 		NewBook.setBookName(SplitedLine[0]);
 		NewBook.setDesctiption(SplitedLine[1]);		
