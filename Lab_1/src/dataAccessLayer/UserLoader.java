@@ -1,8 +1,12 @@
+package dataAccessLayer;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import role.Admin;
+import role.User;
 
 public class UserLoader {
 	private final int USER_NAME = 0;
@@ -11,17 +15,15 @@ public class UserLoader {
 	private final int USER_MARK = 3;
 	private final String ADMIN_MARK = "Admin";
 	
-	public ArrayList<User> GetUsers(String FileName)
-	{
+	public ArrayList<User> GetUsers(String FileName){
 		BufferedReader br;
 		if (FileName == null) return null;
-		try
-		{
+		try{
 			ArrayList<User> LoadedUsers = new ArrayList<User>();
 			FileInputStream stream = new FileInputStream(FileName);
 			br = new BufferedReader(new InputStreamReader(stream));
 			String strLine;
-			while ((strLine = br.readLine()) != null)   {
+			while ((strLine = br.readLine()) != null){
 				User NewUser = GetUser(strLine);				
 				LoadedUsers.add(NewUser);					  
 			}
@@ -34,18 +36,16 @@ public class UserLoader {
 		return null;
 	}
 	
-	private User GetUser(String Line)
-	{
+	private User GetUser(String Line){
 		String[] SplitedLine = Line.split(":");
 		String Name = SplitedLine[USER_NAME];
 		String Passwd = SplitedLine[USER_PASSWD];
 		String Email = SplitedLine[USER_EMAIL];
 		User NewUser;
-		if (SplitedLine.length > USER_MARK)			
-		{
-			if (SplitedLine[USER_MARK] == ADMIN_MARK)
-			{
+		if (SplitedLine.length > USER_MARK){
+			if (SplitedLine[USER_MARK].compareTo(ADMIN_MARK) == 0){
 				NewUser = new Admin(Name, Passwd, Email);
+				return NewUser;
 			}
 		}
 		NewUser = new User(Name,Passwd,Email);	

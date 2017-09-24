@@ -1,13 +1,18 @@
+package emailer;
 import java.util.ArrayList;
 import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import role.IAdmin;
+import role.User;
 
 public class Emailer {
 	
 	public void SendToUsers(ArrayList<User> Users,String Message, String Subj)
 	{
 		for (User user : Users) {
+			if (!(user instanceof IAdmin))
 			SendMail(Message, user.getEmail(), Subj);
 		}
 	}

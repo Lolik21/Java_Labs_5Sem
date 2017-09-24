@@ -1,4 +1,8 @@
+package data;
 import java.util.ArrayList;
+
+import dataAccessLayer.LibraryLoader;
+import role.User;
 
 public class BookLibrary {
 	private ArrayList<Book> Books;
@@ -13,6 +17,11 @@ public class BookLibrary {
 	public ArrayList<User> getUsers()
 	{
 		return Users;
+	}
+	
+	public ArrayList<Book> getBooks()
+	{
+		return this.Books;
 	}
 	
 	public void setAdminEmail(String Email)
@@ -38,7 +47,7 @@ public class BookLibrary {
 	public Book GetByName(String Name)
 	{
 		for (Book book : Books) {
-			if (book.getBookName() == Name)
+			if (book.getBookName().compareTo(Name) == 0)
 			{
 				return book;
 			}
@@ -48,7 +57,7 @@ public class BookLibrary {
 	
 	public Book GetByIndex(int index)
 	{
-		if (index>0 && index<Books.size())
+		if (index>=0 && index<Books.size())
 		{
 			return Books.get(index);
 		}		

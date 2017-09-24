@@ -1,4 +1,9 @@
+package role;
 import java.util.Scanner;
+
+import control.Control;
+import data.Book;
+import data.BookLibrary;
 
 public class Admin extends User implements IAdmin {
 
@@ -6,7 +11,7 @@ public class Admin extends User implements IAdmin {
 		super(Name, Passwd, Email);
 	}
 	
-	private void onCreateNewBookAction(BookLibrary library, Scanner scanner)
+	public void onCreateNewBookAction(BookLibrary library, Scanner scanner)
 	{
 		System.out.println("Введите название : ");
 		String Name = scanner.nextLine();
@@ -27,7 +32,7 @@ public class Admin extends User implements IAdmin {
 		}
 	}
 	
-	private void onDeleteBookAction(BookLibrary library, Scanner scanner)
+	public void onDeleteBookAction(BookLibrary library, Scanner scanner)
 	{
 		System.out.println("Введите название : ");
 		String Name = scanner.nextLine();
@@ -43,7 +48,7 @@ public class Admin extends User implements IAdmin {
 		}
 	}
 	
-	private void onChangeBookAction(BookLibrary library, Scanner scanner)
+	public void onChangeBookAction(BookLibrary library, Scanner scanner)
 	{
 		System.out.println("Введите название : ");
 		String Name = scanner.nextLine();
@@ -64,38 +69,8 @@ public class Admin extends User implements IAdmin {
 	
 	public void PerformAction(BookLibrary library, Scanner scanner)
 	{
-		int ChousedParam = -1;
-		while (ChousedParam != 0)
-		{
-			System.out.println("Выберите действие: ");
-			System.out.println("0) Выход.");
-			System.out.println("1) Показать каталог.");
-			System.out.println("2) Поиск книги.");
-			System.out.println("3) Добавить книгу.");
-			System.out.println("4) Удалить книгу.");
-			System.out.println("5) Изменить описание.");
-			if(scanner.hasNextInt()) {
-				ChousedParam = scanner.nextInt();
-			}
-			switch (ChousedParam) {
-			case 1:
-				ShowCatalogAction(library,scanner);
-				break;
-			case 2:
-				SerchBookAction(library,scanner);
-				break;
-			case 3:
-				onCreateNewBookAction(library, scanner);
-				break;
-			case 4:
-				onDeleteBookAction(library, scanner);
-				break;
-			case 5:
-				onChangeBookAction(library, scanner);
-				break;
-			}
-		}
-		
+		Control control = new Control();
+		control.onPerformAdminAction(library, scanner);	
 	}
 	
 	public String getAdminEmail() {		
