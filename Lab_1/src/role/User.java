@@ -1,42 +1,41 @@
 package role;
 import java.util.Scanner;
 
-import control.Control;
-
-import data.BookLibrary;
+import control.ConsoleControl;
+import model.BookLibrary;
 
 public class User {
-	private String Name;
-	private String Passwd;
-	private String Email;
+	private String name;
+	private String passwd;
+	private String email;
 	
-	public User(String Name, String Passwd, String Email)
+	public User(String name, String passwd, String email)
 	{
-		this.Name = Name;
-		this.Passwd = Passwd;
-		this.Email = Email;
+		this.name = name;
+		this.passwd = passwd;
+		this.email = email;
 	}
 	
 	public String getEmail()
 	{
-		return this.Email;
+		return this.email;
 	}
 	
 	public String getName()
 	{
-		return this.Name;
+		return this.name;
 	}
 	
 	public String getPasswd()
 	{
-		return this.Passwd;
+		return this.passwd;
 	
 	}
 	
-	public void PerformAction(BookLibrary library, Scanner scanner)
+	public void performAction(BookLibrary library, Scanner scanner)
 	{	
-		Control control = new Control();
-		control.onPerformUserAction(library, scanner);	
+		ConsoleControl consoleControl = new ConsoleControl();
+		consoleControl.onPerformUserAction(library, scanner);	
 	}
 		
 }

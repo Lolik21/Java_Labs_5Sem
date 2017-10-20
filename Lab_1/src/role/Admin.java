@@ -1,29 +1,29 @@
 package role;
 import java.util.Scanner;
 
-import control.Control;
-import data.Book;
-import data.BookLibrary;
+import control.ConsoleControl;
+import model.Book;
+import model.BookLibrary;
 
 public class Admin extends User implements IAdmin {
 
-	public Admin(String Name, String Passwd, String Email) {
-		super(Name, Passwd, Email);
+	public Admin(String name, String passwd, String email) {
+		super(name, passwd, email);
 	}
 	
 	public void onCreateNewBookAction(BookLibrary library, Scanner scanner)
 	{
 		System.out.println("Введите название : ");
-		String Name = scanner.nextLine();
+		String name = scanner.nextLine();
 		System.out.println("Введите описание : ");
-		String Desc = scanner.nextLine();
+		String desc = scanner.nextLine();
 		
-		Book NewBook = new Book();
-		NewBook.setBookName(Name);
-		NewBook.setDesctiption(Desc);
-		if (library.GetByName(Name) == null)
+		Book newBook = new Book();
+		newBook.setBookName(name);
+		newBook.setDesctiption(desc);
+		if (library.getByName(name) == null)
 		{
-			library.addBook(NewBook);
+			library.addBook(newBook);
 			System.out.println("Книга добавлена");
 		}
 		else
@@ -35,11 +35,11 @@ public class Admin extends User implements IAdmin {
 	public void onDeleteBookAction(BookLibrary library, Scanner scanner)
 	{
 		System.out.println("Введите название : ");
-		String Name = scanner.nextLine();
-		Book DelBook = library.GetByName(Name);
-		if (DelBook != null)
+		String name = scanner.nextLine();
+		Book delBook = library.getByName(name);
+		if (delBook != null)
 		{
-			library.DeleteBook(DelBook);
+			library.deleteBook(delBook);
 			System.out.println("Книга удалена");
 		}
 		else
@@ -55,7 +55,7 @@ public class Admin extends User implements IAdmin {
 		System.out.println("Введите новое описание : ");
 		String NewDesc = scanner.nextLine();
 		
-		Book cngBook = library.GetByName(Name);
+		Book cngBook = library.getByName(Name);
 		if (cngBook != null)
 		{
 			cngBook.setDesctiption(NewDesc);
@@ -67,16 +67,14 @@ public class Admin extends User implements IAdmin {
 		}
 	}
 	
-	public void PerformAction(BookLibrary library, Scanner scanner)
+	public void performAction(BookLibrary library, Scanner scanner)
 	{
-		Control control = new Control();
-		control.onPerformAdminAction(library, scanner);	
+		ConsoleControl consoleControl = new ConsoleControl();
+		consoleControl.onPerformAdminAction(library, scanner);	
 	}
 	
 	public String getAdminEmail() {		
 		return this.getEmail();
 	}
 	
-
-
 }

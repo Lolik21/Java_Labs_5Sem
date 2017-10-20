@@ -9,15 +9,15 @@ import role.User;
 
 public class Emailer {
 	
-	public void SendToUsers(ArrayList<User> Users,String Message, String Subj)
+	public void sendToUsers(ArrayList<User> users,String message, String subj)
 	{
-		for (User user : Users) {
+		for (User user : users) {
 			if (!(user instanceof IAdmin))
-			SendMail(Message, user.getEmail(), Subj);
+			sendMail(message, user.getEmail(), subj);
 		}
 	}
 	
-	public void SendMail(String strmessage,String to,String Subj)
+	public void sendMail(String strmessage,String to,String Subj)
 	{
 		
 		 	Properties properties = new Properties();
